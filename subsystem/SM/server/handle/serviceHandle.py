@@ -51,6 +51,9 @@ class ServiceHandler(tornado.web.RequestHandler):
         raise gen.Return(ret.toJson())
         pass
 
+
+
+
     def register(self, req):
         object = self.application.userService.register(RegisterForm.createFromDict(req["body"]))
         return JsonTemplate.newJsonSuccessRes(body="")
