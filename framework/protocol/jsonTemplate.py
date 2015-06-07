@@ -80,7 +80,6 @@ class JsonTemplate:
         return JsonTemplate().newJsonRes(zebError.errCode, zebError.errMsg)
 
     def toJson(self):
-        print self.__dict__
         return json.dumps(self.__dict__, default=_default)
 
     @staticmethod

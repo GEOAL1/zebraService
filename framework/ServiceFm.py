@@ -8,13 +8,13 @@ import time
 
 import tornado
 from tornado import web
+from tornado.httpclient import HTTPResponse
 from zkclient import ZkClient, NodeChildrenListener
+from tornado import httpclient
 
 from framework.protocol.jsonTemplate import JsonTemplate
 
-log = logging.getLogger("ServiceFM")
-
-ZkClient
+log = logging.getLogger("ZebraServiceSvr")
 
 
 class UpdateListener(NodeChildrenListener):
@@ -208,16 +208,15 @@ class ZebraServiceCli():
 
             client = tornado.httpclient.HTTPClient()
             requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject.__dict__).toJson()
-            print requestBody
             host, port = self.getSlave()
             url = "http://%s:%s%s" % (host, port, path)
-            http_request = tornado.httpclient.HTTPRequest(url=url, method='POST', \
-                                                          use_gzip=False, connect_timeout=200, request_timeout=600,
+            http_request = tornado.httpclient.HTTPRequest(url=url, method='POST',
+                                                          use_gzip=False, connect_timeout=8000, request_timeout=8000,
                                                           body=requestBody)
-
             resp = client.fetch(http_request)
-            return json.load(resp.body)
+            body =  json.loads(resp.body)
+            return body
         except Exception as e:
-            log.error(e)
+            log.error(e.message)
             return JsonTemplate.newJsonErrorRes(-1, "请求异常")
         pass
