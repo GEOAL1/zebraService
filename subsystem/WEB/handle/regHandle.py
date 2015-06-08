@@ -1,6 +1,7 @@
 # /usr/bin/python
 # coding: utf-8
 # Createtime 2015/5/25
+import base64
 import json
 import logging
 import random
@@ -65,7 +66,7 @@ class RegHandler(BaseHandler):
 
         if password != retryPassword:
             raise SamePasswordError()
-
+        phone = base64.decodestring(phone)
         return phone,password
 
 

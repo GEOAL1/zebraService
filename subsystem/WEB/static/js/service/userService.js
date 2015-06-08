@@ -45,7 +45,7 @@ app.service('userService', function ($rootScope, $http) {
         },
 
         login: function (phone, password, cb) {
-            data = {"un": phone, "pw": password}
+            data = {"un":  CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(regObject.ph)), "pw":  CryptoJS.SHA1(password)}
             sendCmd("/wx/u/login", "POST", data, function (statue, data) {
                 if (statue == 0) {
                     window.location.href = "/";
@@ -60,7 +60,18 @@ app.service('userService', function ($rootScope, $http) {
         },
 
         register: function (regObject, cb) {
-            sendCmd("/wx/u/reg", "POST", regObject, function (statue, data) {
+            obj = {
+                ph:regObject.ph,
+                password :regObject.password,
+                confirmPassword:regObject.confirmPassword,
+                confirmCode :regObject.confirmCode
+            }
+
+            obj.ph = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(regObject.ph));		// 将 WordArray 用 Base64 加密
+            obj.password =  String(CryptoJS.SHA1(regObject.password))
+            obj.confirmPassword = String(CryptoJS.SHA1(regObject.confirmPassword));
+
+            sendCmd("/wx/u/reg", "POST", obj, function (statue, data) {
                 if (statue == 0) {
                     alert("注册成功");
                     window.location.href = "/";
