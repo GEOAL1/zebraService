@@ -6,8 +6,7 @@
 
 
 class RegisterForm(object):
-    def __init__(self, userID, phone, password):
-        self.userID = userID;
+    def __init__(self, phone, password):
         self.phone = phone
         self.password = password
         pass

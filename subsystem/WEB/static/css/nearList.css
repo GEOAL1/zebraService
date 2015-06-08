@@ -1,0 +1,38 @@
+#detail_info {
+
+}
+
+#detail_info a {
+    display: block;
+
+}
+
+#detail_info > a {
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    font-size: 12px;
+    padding: 10px 5px;
+    border-bottom: 1px solid #666;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #fff;
+    color: #009900;
+}
+
+#detail_info > a > div:nth-child(2) {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    padding-left: 5px;
+}
+
+#detail_info div.btn-area {
+    padding-top: 6px;
+}
+span.addr {
+    background: url("../img/flag.png") no-repeat;
+    background-size: 15px 15px;
+    padding-left: 15px;
+}

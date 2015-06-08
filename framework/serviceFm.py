@@ -14,7 +14,7 @@ from tornado import httpclient
 
 from framework.protocol.jsonTemplate import JsonTemplate
 
-log = logging.getLogger("ZebraServiceSvr")
+log = logging.getLogger("serviceFm")
 
 
 class UpdateListener(NodeChildrenListener):
@@ -155,6 +155,19 @@ class ZebraServiceCli():
         :return:
         '''
         self.zk = ZkClient(self.zkAddrs)
+        nodes = (self.ZEBRA_ROOT, self.zkSvcPath, self.zkSvcWorkPath)
+
+        for node in nodes:
+            log.debug(node)
+
+            if not self.zk.Exist(node, False):
+                try:
+                    self.zk.Create(node, "", 0)
+                except Exception as e:
+                    log.error("初化化ZK结点失败")
+                    exit(1)
+                    pass
+        pass
 
     def __register(self):
         '''

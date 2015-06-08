@@ -1,0 +1,62 @@
+body {
+    min-width: 320px;
+}
+
+#myCarousel img {
+    width: 100%;
+    height: auto;
+}
+
+.p_meter {
+    color: #999999;
+    font-size: 16px;
+    padding-top: 13px;
+    font-weight: bold;
+}
+
+.p_mid {
+    font-size: small;
+}
+
+.d_row {
+    padding-top: 15px;
+    color: #999999;
+    font-size: 15px;
+}
+
+.btng {
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    font-size: 12px;
+    color: #333;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-top: 20px;
+
+}
+
+.btng div {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+}
+
+.btng div input {
+    width: 60px;
+    height: 30px;
+    margin-left: -30px;
+    left: 50%;
+    position: relative;
+    backface-visibility: hidden;
+    background: green;
+    border: 1px solid #ddd;
+    color: #fff;
+    font-size: 15px;
+    color: #FFF;
+    background-color: #5CB85C;
+    border-color: #4CAE4C;
+    border-radius: 10%;
+}
+

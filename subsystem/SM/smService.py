@@ -2,8 +2,11 @@
 # coding: utf-8
 import logging
 import time
+from framework.error import zebraError
+from framework.error.zebraError import ZebraError
 from framework.model.registerForm import RegisterForm
 from framework.protocol.commandCode import *
+from framework.protocol.jsonTemplate import JsonTemplate
 from framework.serviceFm import ZebraServiceCli
 
 logging.basicConfig(
@@ -64,13 +67,16 @@ class SMService(ZebraServiceCli):
     def apiRegister(self, registerForm):
         '''
         :param registerForm: 注册时，提供的表单对象
-        :return: 直接返回JSON结果对象
+        :return: 返回注册成功的用户ID
         '''
         resp = self.ReqAndRespone(CMD_SM_REGISTER, registerForm, self.REQ_WEB_PATH)
-        return resp
+        if(JsonTemplate.getRespCodeFromJson(resp) != 0) :
+            raise ZebraError(JsonTemplate.getRespCodeFromJson(resp),JsonTemplate.getRespMsgFromJson(resp))
+
+        return resp['body']["user_id"]
 
 
 if __name__ == '__main__':
     sm = SMService()
-    sm.apiRegister(RegisterForm("15111111", "15652750943", "password"))
+    sm.apiRegister(RegisterForm( "15652750943", "password"))
     time.sleep(1000)

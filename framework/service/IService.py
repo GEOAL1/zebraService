@@ -5,6 +5,4 @@ class IService(object):
     def __init__(self):
         self.userDao = UserDao()
         pass
-
-
 pass
