@@ -38,7 +38,7 @@ class UnameOrPasswordError(ZebraError):
 class CreateUserError(ZebraError):
     def __init__(self):
         self.errCode = -1002
-        self.errMsg = "新建用户失败"
+        self.errMsg = "注册用户失败"
         pass
 
     pass

@@ -3,7 +3,7 @@
 import logging
 import time
 from framework.error import zebraError
-from framework.error.zebraError import ZebraError
+from framework.error.zebraError import *
 from framework.model import *
 from framework.protocol.commandCode import *
 from framework.protocol.jsonTemplate import JsonTemplate
@@ -71,19 +71,25 @@ class SMService(ZebraServiceCli):
         '''
         resp = self.ReqAndRespone(CMD_SM_REGISTER, registerForm, self.REQ_WEB_PATH)
 
+
         if(JsonTemplate.getRespCodeFromJson(resp) != 0) :
-            raise ZebraError(JsonTemplate.getRespCodeFromJson(resp),JsonTemplate.getRespMsgFromJson(resp))
+            log.error("REGISTER：[%s] ERROR" % (registerForm.__dict__))
+            raise CreateUserError();
 
     def apiCheckIsExistPhone(self, phone):
+        '''
+            手机号码
+        :param phone: 要栓查的手机号
+        :return:
+        '''
         resp = self.ReqAndRespone(CMD_SM_CHECK_ISEXISTED_PHONE, ReqcheckPhone(phone), self.REQ_WEB_PATH)
+
 
         if(JsonTemplate.getRespCodeFromJson(resp) != 0) :
             raise ZebraError(JsonTemplate.getRespCodeFromJson(resp),JsonTemplate.getRespMsgFromJson(resp))
         else:
-            ret = RespCheckPhone.createFromDict(JsonTemplate.getRespBodyFromJson(resp)).isExisted
-            return
+            return RespCheckPhone.createFromDict(JsonTemplate.getRespBodyFromJson(resp)).isExisted
         pass
-
 
 if __name__ == '__main__':
     sm = SMService()
