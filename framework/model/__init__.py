@@ -1,3 +1,35 @@
 # /usr/bin/python
 # coding: utf-8
 import logging
+
+class RegisterForm(object):
+    def __init__(self,userID, phone, password):
+        self.phone = phone
+        self.password = password
+        self.userID = userID
+        pass
+
+    @staticmethod
+    def createFromDict(dict):
+        return RegisterForm(dict["userID"], dict["phone"], dict["password"])
+
+class RespCheckPhone:
+    def __init__(self,phone,isExistd):
+        self.phone = phone
+        self.isExisted = isExistd
+
+    @staticmethod
+    def createFromDict(dict):
+        return RespCheckPhone(dict["phone"], dict["isExisted"])
+
+class  ReqcheckPhone():
+    def __init__(self,phone):
+        self.phone = phone
+
+    @staticmethod
+    def createFromDict(dict):
+        return ReqcheckPhone(dict["phone"])
+
+
+
+

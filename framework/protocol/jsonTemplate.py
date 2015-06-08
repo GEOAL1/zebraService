@@ -31,7 +31,7 @@ JSON_S_REQCODE = "reqCode"
 
 JSON_S_RESPCODE = "respCode"
 JSON_S_RSEPMSG = "respMsg"
-
+JSON_S_BODY = "body"
 
 class JsonTemplate:
     def __init__(self):
@@ -93,3 +93,7 @@ class JsonTemplate:
     @staticmethod
     def getRespMsgFromJson(jsonResp):
         return jsonResp["head"][JSON_S_RSEPMSG]
+
+    @staticmethod
+    def getRespBodyFromJson(jsonResp):
+        return jsonResp[JSON_S_BODY]

@@ -220,7 +220,12 @@ class ZebraServiceCli():
         try:
 
             client = tornado.httpclient.HTTPClient()
-            requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject.__dict__).toJson()
+            if not isinstance(bodyObject,dict):
+                requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject.__dict__).toJson()
+            else:
+                requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject).toJson()
+
+
             host, port = self.getSlave()
             url = "http://%s:%s%s" % (host, port, path)
             http_request = tornado.httpclient.HTTPRequest(url=url, method='POST',

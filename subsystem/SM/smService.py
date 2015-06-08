@@ -4,7 +4,7 @@ import logging
 import time
 from framework.error import zebraError
 from framework.error.zebraError import ZebraError
-from framework.model.registerForm import RegisterForm
+from framework.model import *
 from framework.protocol.commandCode import *
 from framework.protocol.jsonTemplate import JsonTemplate
 from framework.serviceFm import ZebraServiceCli
@@ -70,13 +70,21 @@ class SMService(ZebraServiceCli):
         :return: 返回注册成功的用户ID
         '''
         resp = self.ReqAndRespone(CMD_SM_REGISTER, registerForm, self.REQ_WEB_PATH)
+
         if(JsonTemplate.getRespCodeFromJson(resp) != 0) :
             raise ZebraError(JsonTemplate.getRespCodeFromJson(resp),JsonTemplate.getRespMsgFromJson(resp))
 
-        return resp['body']["user_id"]
+    def apiCheckIsExistPhone(self, phone):
+        resp = self.ReqAndRespone(CMD_SM_CHECK_ISEXISTED_PHONE, ReqcheckPhone(phone), self.REQ_WEB_PATH)
+
+        if(JsonTemplate.getRespCodeFromJson(resp) != 0) :
+            raise ZebraError(JsonTemplate.getRespCodeFromJson(resp),JsonTemplate.getRespMsgFromJson(resp))
+        else:
+            ret = RespCheckPhone.createFromDict(JsonTemplate.getRespBodyFromJson(resp)).isExisted
+            return
+        pass
 
 
 if __name__ == '__main__':
     sm = SMService()
-    sm.apiRegister(RegisterForm( "15652750943", "password"))
     time.sleep(1000)

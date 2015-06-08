@@ -4,7 +4,7 @@ import logging
 import time
 from framework.error import zebraError
 from framework.error.zebraError import ZebraError
-from framework.model.registerForm import RegisterForm
+from framework.model import *
 from framework.protocol.commandCode import *
 from framework.protocol.jsonTemplate import JsonTemplate
 from framework.serviceFm import ZebraServiceCli

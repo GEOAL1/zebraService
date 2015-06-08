@@ -4,7 +4,6 @@ import logging
 import time
 from framework.error import zebraError
 from framework.error.zebraError import ZebraError
-from framework.model.registerForm import RegisterForm
 from framework.protocol.commandCode import *
 from framework.protocol.jsonTemplate import JsonTemplate
 from framework.serviceFm import ZebraServiceCli
@@ -62,6 +61,17 @@ class AMService(ZebraServiceCli):
         :return:    空
         '''
         ZebraServiceCli.__init__(self, name, zkAddrs)
+
+    def apiAccIDAlloc(self):
+        '''
+            申请ACCT_ID,
+            成功，返回ID
+            失败 RAISE 异常和信息
+        :return:
+        '''
+        return int(time.time())
+        pass
+
 
 if __name__ == '__main__':
     dm = AMService()

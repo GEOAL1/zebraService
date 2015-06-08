@@ -8,7 +8,6 @@ import tornado.web
 from tornado import gen
 
 from framework.error.zebraError import *
-from framework.model.registerForm import  RegisterForm
 from framework.protocol.commandCode import *
 from framework.protocol.jsonTemplate import JsonTemplate
 from framework.model import *
@@ -23,7 +22,8 @@ class ServiceHandler(tornado.web.RequestHandler):
             请求的映射表
         '''
         self.reqMap = {
-            CMD_SM_REGISTER: self.register
+            CMD_SM_REGISTER: self.register,
+            CMD_SM_CHECK_ISEXISTED_PHONE:self.isExistedPhone
         }
 
     def get(self):
@@ -47,14 +47,17 @@ class ServiceHandler(tornado.web.RequestHandler):
         except ZebraError as e:
             ret = JsonTemplate.newZebraErrorRes(e)
         except Exception as e:
-            print e
+            log.error(e)
             ret = JsonTemplate.newJsonErrorRes()
         raise gen.Return(ret.toJson())
         pass
 
-
-
-
     def register(self, req):
-        object = self.application.userService.register(RegisterForm.createFromDict(req["body"]))
-        return JsonTemplate.newJsonSuccessRes(body="")
+        self.application.userService.register(RegisterForm.createFromDict(req["body"]))
+        return JsonTemplate.newJsonSuccessRes()
+
+    def isExistedPhone(self,req):
+        phone = JsonTemplate.getRespBodyFromJson(req)["phone"]
+        isExist = self.application.userService.isExistedPhone(phone)
+        resp = RespCheckPhone(phone,isExist)
+        return JsonTemplate.newJsonSuccessRes().setBody(resp.__dict__)

@@ -20,9 +20,6 @@ class BaseHandler(tornado.web.RequestHandler):
             self.session.save()
             pass
 
-        self.userService = self.application.userService
-
-
     def get_current_user(self):
         return self.session.get(SessionUserID)
 

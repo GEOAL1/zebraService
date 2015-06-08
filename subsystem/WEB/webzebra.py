@@ -8,9 +8,10 @@ import tornado.web
 import tornado.options
 from tornado.options import define, options
 from framework.utils import session
-from subsystem.SM.smService import SMService
+
 from subsystem.WEB.handle.defaultHandle import DefaultHandler
-from subsystem.WEB.handle.regHandle import RegHandler
+from subsystem.WEB.service.userService import  UserService
+from subsystem.WEB.handle.regHandle import *
 
 define("port", default=8001, help="run on the given port", type=int)
 
@@ -34,13 +35,14 @@ class ZebraApplicatoin(tornado.web.Application):
             static_path=os.path.join(os.path.dirname(__file__), "static"),
 
         )
+
         handlers = [
             (r"/", DefaultHandler),
             (r"", DefaultHandler),
 
             # 用户信息管理
             (r"/wx/u/reg", RegHandler),
-            (r"/wx/u/checkPhone/(\d{11})", DefaultHandler),
+            (r"/wx/u/checkPhone/(\d{11})", CheckPhoneHandle),
             (r"/wx/u/info", DefaultHandler),
             (r"/wx/u/login", DefaultHandler),
 
@@ -50,7 +52,7 @@ class ZebraApplicatoin(tornado.web.Application):
         self.session_manager = session.SessionManager(settings["session_secret"], settings["store_options"],
                                                       settings["session_timeout"])
 
-        self.sm = SMService()
+        self.userService = UserService()
 
         # xsrf_cookies=True,
 

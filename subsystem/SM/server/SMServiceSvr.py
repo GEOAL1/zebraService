@@ -12,7 +12,7 @@ from subsystem.SM.server.handle.serviceHandle import ServiceHandler
 from subsystem.SM.server.service.userService import UserService
 
 define('debug', default=False, help='enable debug mode')
-define('port', default=8001, help='run on this port', type=int)
+define('port', default=8012, help='run on this port', type=int)
 define('address', default="127.0.0.1", help='run on this address', type=str) #记得写外网IP，要不客户端连接不上
 define('zookeepers', default="127.0.0.1:2181", help='run on this zookeeper cloudy', type=str) #
 
@@ -36,7 +36,7 @@ class SMServer(ZebraServiceSvr):
         ]
 
         # 注入服务
-        self.userService = UserService()  #业务逻辑模块注入
+        self.userService = UserService()
 
         # 初始化WEB
         tornado.web.Application.__init__(self, handlers, **settings)
