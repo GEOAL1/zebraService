@@ -2,9 +2,9 @@
 # coding: utf-8
 import logging
 import time
-
-from framework.ServiceFm import ZebraServiceCli
-from framework.model.registerForm import CMD_SM_REGISTER, RegisterForm
+from framework.model.registerForm import RegisterForm
+from framework.protocol.commandCode import *
+from framework.serviceFm import ZebraServiceCli
 
 logging.basicConfig(
     level=logging.INFO,
@@ -12,7 +12,7 @@ logging.basicConfig(
 )
 
 
-class SMServicCli(ZebraServiceCli):
+class SMService(ZebraServiceCli):
     '''
         这是提供服务的客户端使用API，
         该类 继类的父类提供了通过ZK 寻找服务提供方的结口，目前可通过上层的
@@ -71,6 +71,6 @@ class SMServicCli(ZebraServiceCli):
 
 
 if __name__ == '__main__':
-    sm = SMServicCli()
+    sm = SMService()
     sm.apiRegister(RegisterForm("15111111", "15652750943", "password"))
     time.sleep(1000)

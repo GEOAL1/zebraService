@@ -1,6 +1,6 @@
 # /usr/bin/python
 # coding: utf-8
-from framework.dao.IMysqlDao import IMysqlDao
+from framework.dao.iMysqlDao import IMysqlDao
 
 
 class UserDao(IMysqlDao):

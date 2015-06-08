@@ -4,7 +4,7 @@ from framework.utils.mysqldb import MysqlMananger
 
 
 class IMysqlDao():
-    db = MysqlMananger.db
+    db = MysqlMananger.createMysqlDBInstance()
 
     @abstractmethod
     def add(self, object):

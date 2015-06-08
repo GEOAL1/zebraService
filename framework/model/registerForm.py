@@ -3,7 +3,6 @@
 
 
 
-CMD_SM_REGISTER = "REGISTER"
 
 
 class RegisterForm(object):

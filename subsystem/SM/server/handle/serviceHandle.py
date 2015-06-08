@@ -8,7 +8,8 @@ import tornado.web
 from tornado import gen
 
 from framework.error.zebraError import *
-from framework.model.registerForm import CMD_SM_REGISTER, RegisterForm
+from framework.model.registerForm import  RegisterForm
+from framework.protocol.commandCode import *
 from framework.protocol.jsonTemplate import JsonTemplate
 from framework.model import *
 

@@ -4,13 +4,14 @@
 import torndb
 
 
-class Singleton(object):
-    def __new__(cls, *args, **kw):
-        if not hasattr(cls, '_instance'):
-            orig = super(Singleton, cls)
-            cls._instance = orig.__new__(cls, *args, **kw)
-        return cls._instance
 
 
-class MysqlMananger(Singleton):
-    db = torndb.Connection("127.0.0.1", "zebra", "root", "123456")
+
+class MysqlMananger:
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def createMysqlDBInstance(dbname="zebra",host="127.0.0.1",username="root",password="123456"):
+        return torndb.Connection(host, dbname, username, password)

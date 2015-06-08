@@ -6,8 +6,8 @@ import tornado
 from tornado import httpserver
 
 from tornado.options import define, options
+from framework.serviceFm import ZebraServiceSvr
 
-from framework.ServiceFm import ZebraServiceSvr
 from subsystem.SM.server.handle.serviceHandle import ServiceHandler
 from subsystem.SM.server.service.userService import UserService
 
