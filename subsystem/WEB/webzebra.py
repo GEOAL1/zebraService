@@ -8,11 +8,15 @@ import tornado.web
 import tornado.options
 from tornado.options import define, options
 from framework.utils import session
+from framework.utils.WeixinUtils import WeixinMananger
+from subsystem.WEB.handle.bikeHandle import NearBikeHandler, BikeCtrlHandler, BikeInfoHandler
 
 from subsystem.WEB.handle.defaultHandle import DefaultHandler
 from subsystem.WEB.handle.loginHandle import LoginHandler
 from subsystem.WEB.handle.routerHandle import RouterHandler
 from subsystem.WEB.handle.userHandler import UserInfoHandler
+from subsystem.WEB.handle.weixinServiceHandle import WeixinServiceHandle
+from subsystem.WEB.service.bikeService import BikeService
 from subsystem.WEB.service.userService import  UserService
 from subsystem.WEB.handle.regHandle import *
 
@@ -49,6 +53,18 @@ class ZebraApplicatoin(tornado.web.Application):
             (r"/wx/u/info", UserInfoHandler),
             (r"/wx/u/login", LoginHandler),
 
+            # 车管
+            (r"/wx/b/list", DefaultHandler),
+            (r"/wx/b/info", BikeInfoHandler),
+            (r"/wx/b/ctrl/(\w*)", BikeCtrlHandler),
+            (r"/wx/b/search", NearBikeHandler),
+
+            # 第三方服务
+            (r"/wx/send/phoneCode", SendPhoneCodeHandle),
+
+            # 微信服务
+            (r"/wx/service/(.*)", WeixinServiceHandle)
+
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -56,6 +72,10 @@ class ZebraApplicatoin(tornado.web.Application):
                                                       settings["session_timeout"])
 
         self.userService = UserService()
+        self.bikeService = BikeService()
+
+        self.weixinManager = WeixinMananger()
+
 
         # xsrf_cookies=True,
 

@@ -152,3 +152,4 @@ app.service('bikeService', function ($rootScope, $http) {
     }
     return service
 })
+
