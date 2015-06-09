@@ -118,3 +118,27 @@ class RespNearBike(object):
         self.__dict__.update(dict)
 
     pass
+
+class RespAccIdAlloc(object):
+    def __init__(self, uid):
+        self.uid = uid
+
+    pass
+
+    @staticmethod
+    def createFromDict(dict):
+        return RespAccIdAlloc(dict["uid"])
+    
+class ReqAccount():
+    def __init__(self, uid):
+        self.uid = uid
+
+    pass
+
+    @staticmethod
+    def createFromDict(dict):
+        return ReqAccount(dict["uid"])
+    
+class RespAccDetail:
+    def __init__(self, dict):
+        self.__dict__ = dict
