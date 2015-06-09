@@ -163,6 +163,4 @@ class InvaildReqCodeError(ZebraError):
         self.errCode = -1014
         self.errMsg = "无效的请求类型"
         pass
-
-
 pass

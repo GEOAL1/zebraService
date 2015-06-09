@@ -227,6 +227,7 @@ class ZebraServiceCli():
 
         host, port = self.getSlave()
         url = "http://%s:%s%s" % (host, port, path)
+        log.info(url)
         http_request = tornado.httpclient.HTTPRequest(url=url, method='POST',
                                                       use_gzip=False, connect_timeout=8000, request_timeout=8000,
                                                       body=requestBody)
