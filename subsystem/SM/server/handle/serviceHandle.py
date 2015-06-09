@@ -24,7 +24,8 @@ class ServiceHandler(tornado.web.RequestHandler):
         self.reqMap = {
             CMD_SM_REGISTER: self.register,
             CMD_SM_CHECK_ISEXISTED_PHONE: self.isExistedPhone,
-            CMD_SM_LOGIN: self.login
+            CMD_SM_LOGIN: self.login,
+            CMD_SM_GETUSERDETAILINFO: self.getUserDetailInfo,
         }
 
     def get(self):
@@ -65,3 +66,7 @@ class ServiceHandler(tornado.web.RequestHandler):
     def login(self, req):
         respLogin = self.application.userService.login(ReqLogin.createFromDict(req["body"]))
         return JsonTemplate.newJsonSuccessRes().setBody(respLogin.__dict__)
+
+    def getUserDetailInfo(self, req):
+        userDetail = self.application.userService.getUserDetailInfo(ReqUser.createFromDict(req["body"]))
+        return JsonTemplate.newJsonSuccessRes().setBody(userDetail.__dict__)

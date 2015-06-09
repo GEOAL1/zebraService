@@ -25,7 +25,13 @@ class UserDao(IMysqlDao):
         sql = "select * from t_user where phone = %s and password = %s"
         return self.db.get(sql, phone, password)
 
+    def getUserAllInfoByUserID(self, uid):
+        sql = "select * from t_user a join t_user_info b on a.uid = %s and b.uid = %s join t_user_state c" \
+              " on a.uid = %s and c.uid = %s;"
+        return self.db.get(sql, uid, uid, uid, uid)
+
 if __name__ == '__main__':
     ud = UserDao()
-    ud.add(123456,15652750944,"123456")
+    result = ud.getUserAllInfoByUserID("1433822443")
+    print type(result)
     pass

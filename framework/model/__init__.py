@@ -52,3 +52,46 @@ class RespLogin(object):
     @staticmethod
     def createFromDict(dict):
         return RespLogin(dict["uid"])
+
+
+class ReqUser:
+    def __init__(self, uid):
+        self.uid = uid
+
+    pass
+
+    @staticmethod
+    def createFromDict(dict):
+        return ReqUser(dict["uid"])
+
+
+class Account(object):
+    def __init__(self, dict):
+        self.__dict__ = dict
+
+
+class User:
+    def __init__(self, dict):
+        self.__dict__ = dict
+
+
+class UserInfo(object):
+    def __init__(self, dict):
+        self.__dict__ = dict
+
+
+class UserState(object):
+    def __init__(self, dict):
+        self.__dict__ = dict
+
+
+class RespUserDetail:
+    def __init__(self, dict):
+        self.__dict__ = dict
+
+
+class UserFullInfo(object):
+    def __init__(self, dict):
+        self.__dict__.update(dict)
+
+    pass

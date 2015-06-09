@@ -1,7 +1,7 @@
 #/usr/bin/python
 #coding: utf-8
 import logging
-from framework.model import RegisterForm, ReqLogin, ReqcheckPhone
+from framework.model import RegisterForm, ReqLogin, ReqcheckPhone, ReqUser, UserFullInfo
 from subsystem.AM.amService import AMService
 from subsystem.CM.cmService import CMService
 from subsystem.DM.dmService import DMService
@@ -37,3 +37,11 @@ class UserService():
 
     def login(self, phone, password):
         return self.sm.apiLogin(ReqLogin(phone, password))
+
+    def detailUserInfo(self, user_id):
+        # 请求帐户信息
+        acct = self.am.apiGetAcctInfoByID(ReqUser(user_id))
+        # 请求个人信息及个人状态
+        userdetail = self.sm.apiGetUserDetailInfoByID(ReqUser(user_id))
+        ret = dict(acct.__dict__, **userdetail.__dict__)
+        return ret

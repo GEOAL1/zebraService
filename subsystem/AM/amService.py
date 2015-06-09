@@ -14,6 +14,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s- %(filename)s:%(lineno)d"
 )
 
+
 class AMService(ZebraServiceCli):
     '''
         这是提供服务的客户端使用API，
@@ -70,6 +71,15 @@ class AMService(ZebraServiceCli):
         :return:
         '''
         return int(time.time())
+        pass
+
+    def apiGetAcctInfoByID(self, reqUser):
+        '''
+         获取生成返因ACCT对象，失败则抛出异常
+        :param reqUser:
+        :return: Account
+        '''
+        return Account({"uid": reqUser.uid, "balance": 100, "point": 100})
         pass
 
 

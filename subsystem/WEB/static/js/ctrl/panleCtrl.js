@@ -79,7 +79,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
         })
     }
 
-    geoService.getGeo(function (status, lng, lat) {
+    /* geoService.getGeo(function (status, lng, lat) {
         if (status == 0) {
             $scope.lng = lng;
             $scope.lat = lat;
@@ -90,8 +90,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
 
         $scope.getNearBike()
 
-
-    });
+     });*/
 
 
 })

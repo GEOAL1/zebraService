@@ -11,6 +11,7 @@
           <option value="unittest.TestCase" />
           <option value="unittest.case.TestCase" />
           <option value="framework.utils.mysqldb.MysqlMananger" />
+          <option value="subsystem.SM.server.handle.serviceHandle.ServiceHandler" />
         </list>
       </option>
     </inspection_tool>

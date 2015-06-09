@@ -85,6 +85,12 @@ class SMService(ZebraServiceCli):
 
     pass
 
+    def apiGetUserDetailInfoByID(self, ReqUser):
+        resp = self.ReqAndRespone(CMD_SM_GETUSERDETAILINFO, ReqUser, self.REQ_WEB_PATH)
+        return RespUserDetail(JsonTemplate.getRespBodyFromJson(resp))
+        pass
+
+
 if __name__ == '__main__':
     sm = SMService()
     while True:

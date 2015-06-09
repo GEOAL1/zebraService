@@ -25,3 +25,9 @@ class UserService(IService):
             raise UnameOrPasswordError()
         else:
             return RespLogin(user["uid"])
+
+    def getUserDetailInfo(self, reqUser):
+        userDetail = self.userDao.getUserAllInfoByUserID(reqUser.uid)
+        if (userDetail == None):
+            raise UserIsNotFoundedError()
+        return RespUserDetail(userDetail)

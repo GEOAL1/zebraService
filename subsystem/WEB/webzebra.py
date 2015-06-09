@@ -11,6 +11,8 @@ from framework.utils import session
 
 from subsystem.WEB.handle.defaultHandle import DefaultHandler
 from subsystem.WEB.handle.loginHandle import LoginHandler
+from subsystem.WEB.handle.routerHandle import RouterHandler
+from subsystem.WEB.handle.userHandler import UserInfoHandler
 from subsystem.WEB.service.userService import  UserService
 from subsystem.WEB.handle.regHandle import *
 
@@ -38,13 +40,13 @@ class ZebraApplicatoin(tornado.web.Application):
         )
 
         handlers = [
-            (r"/", DefaultHandler),
-            (r"", DefaultHandler),
+            (r"/", RouterHandler),
+            (r"", RouterHandler),
 
             # 用户信息管理
             (r"/wx/u/reg", RegHandler),
             (r"/wx/u/checkPhone/(\d{11})", CheckPhoneHandle),
-            (r"/wx/u/info", DefaultHandler),
+            (r"/wx/u/info", UserInfoHandler),
             (r"/wx/u/login", LoginHandler),
 
         ]
