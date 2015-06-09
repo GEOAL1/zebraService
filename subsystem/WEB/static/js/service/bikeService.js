@@ -30,7 +30,8 @@ app.service('bikeService', function ($rootScope, $http) {
                 window.location.href = "/static/login.html"
             }
             //alert(status + ":" + "连接服务器失败");
-            callback(-1, {errorCode: -1, errorMeg: status, body: ""});
+            console.log(status)
+            callback(-1, {errorCode: -1, errorMeg: "服务器忙，稍后再试", body: ""});
         });
     };
 

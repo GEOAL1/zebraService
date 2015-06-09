@@ -31,5 +31,24 @@ class  ReqcheckPhone():
         return ReqcheckPhone(dict["phone"])
 
 
+class ReqLogin(object):
+    def __init__(self, phone, password):
+        self.phone = phone
+        self.password = password
+
+    pass
+
+    @staticmethod
+    def createFromDict(dict):
+        return ReqLogin(dict["phone"], dict["password"])
 
 
+class RespLogin(object):
+    def __init__(self, uid):
+        self.uid = uid
+
+    pass
+
+    @staticmethod
+    def createFromDict(dict):
+        return RespLogin(dict["uid"])

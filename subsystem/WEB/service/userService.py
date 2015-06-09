@@ -1,13 +1,14 @@
 #/usr/bin/python
 #coding: utf-8
 import logging
-from framework.model import RegisterForm
+from framework.model import RegisterForm, ReqLogin, ReqcheckPhone
 from subsystem.AM.amService import AMService
 from subsystem.CM.cmService import CMService
 from subsystem.DM.dmService import DMService
 from subsystem.SM.smService import SMService
 
 log = logging.getLogger("userService")
+
 
 class UserService():
     def __init__(self,sm=SMService(),cm=CMService(),am=AMService(),dm=DMService()):
@@ -30,6 +31,9 @@ class UserService():
         #失败raise异常
 
     def checkIsExistedPhone(self,phone):
-        is_exist = self.sm.apiCheckIsExistPhone(phone)
+        is_exist = self.sm.apiCheckIsExistPhone(ReqcheckPhone(phone))
         return is_exist;
         pass
+
+    def login(self, phone, password):
+        return self.sm.apiLogin(ReqLogin(phone, password))

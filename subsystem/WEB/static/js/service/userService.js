@@ -19,8 +19,9 @@ app.service('userService', function ($rootScope, $http) {
         }
 
         $http(http_config).success(function (data, status, headers, config) {
+
             if (data.errorCode != 0) {
-                console.log(data.errorCode + " : " + data.errorMeg)
+                console.log(data.errorCode + " : " + data.er)
             }
             callback(data.errorCode, data)
         }).error(function (data, status, headers, config) {
@@ -29,9 +30,8 @@ app.service('userService', function ($rootScope, $http) {
                 alert("登录超时，请重新登录")
                 window.location.href = "/static/login.html"
             }
-            alert(status)
 
-            callback(-1, {errorCode: -1, errorMeg: status})
+            callback(-1, {errorCode: -1, errorMeg: "服务器忙，请稍后再试"})
         });
     };
 
@@ -45,7 +45,11 @@ app.service('userService', function ($rootScope, $http) {
         },
 
         login: function (phone, password, cb) {
-            data = {"un":  CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(regObject.ph)), "pw":  CryptoJS.SHA1(password)}
+
+            data = {
+                "un": CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(phone)),
+                "pw": String(CryptoJS.SHA1(password))
+            }
             sendCmd("/wx/u/login", "POST", data, function (statue, data) {
                 if (statue == 0) {
                     window.location.href = "/";

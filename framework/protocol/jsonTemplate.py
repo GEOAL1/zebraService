@@ -77,7 +77,7 @@ class JsonTemplate:
 
     @staticmethod
     def newZebraErrorRes(zebError):
-        return JsonTemplate().newJsonRes(zebError.errCode, zebError.errMsg)
+        return JsonTemplate().newJsonErrorRes(zebError.errCode, zebError.errMsg)
 
     def toJson(self):
         return json.dumps(self.__dict__, default=_default)

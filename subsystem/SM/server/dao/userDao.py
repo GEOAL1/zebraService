@@ -21,6 +21,9 @@ class UserDao(IMysqlDao):
               "COMMIT;"
         self.db.execute(sql,userid,phone,password,userid,userid)
 
+    def getUserByPhoneAndPassword(self, phone, password):
+        sql = "select * from t_user where phone = %s and password = %s"
+        return self.db.get(sql, phone, password)
 
 if __name__ == '__main__':
     ud = UserDao()

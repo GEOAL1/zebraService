@@ -23,7 +23,8 @@ class ServiceHandler(tornado.web.RequestHandler):
         '''
         self.reqMap = {
             CMD_SM_REGISTER: self.register,
-            CMD_SM_CHECK_ISEXISTED_PHONE:self.isExistedPhone
+            CMD_SM_CHECK_ISEXISTED_PHONE: self.isExistedPhone,
+            CMD_SM_LOGIN: self.login
         }
 
     def get(self):
@@ -48,7 +49,7 @@ class ServiceHandler(tornado.web.RequestHandler):
             ret = JsonTemplate.newZebraErrorRes(e)
         except Exception as e:
             log.error(e)
-            ret = JsonTemplate.newJsonErrorRes()
+            ret = JsonTemplate.newJsonErrorRes(e)
         raise gen.Return(ret.toJson())
         pass
 
@@ -58,6 +59,9 @@ class ServiceHandler(tornado.web.RequestHandler):
 
     def isExistedPhone(self,req):
         phone = JsonTemplate.getRespBodyFromJson(req)["phone"]
-        isExist = self.application.userService.isExistedPhone(phone)
-        resp = RespCheckPhone(phone,isExist)
-        return JsonTemplate.newJsonSuccessRes().setBody(resp.__dict__)
+        respCheckPhone = self.application.userService.isExistedPhone(phone)
+        return JsonTemplate.newJsonSuccessRes().setBody(respCheckPhone.__dict__)
+
+    def login(self, req):
+        respLogin = self.application.userService.login(ReqLogin.createFromDict(req["body"]))
+        return JsonTemplate.newJsonSuccessRes().setBody(respLogin.__dict__)

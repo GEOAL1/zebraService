@@ -11,6 +11,7 @@ from tornado import web
 from tornado.httpclient import HTTPResponse
 from zkclient import ZkClient, NodeChildrenListener
 from tornado import httpclient
+from framework.error.zebraError import ZebraError
 
 from framework.protocol.jsonTemplate import JsonTemplate
 
@@ -217,24 +218,20 @@ class ZebraServiceCli():
         return self.workerAddrs[index].split(":")
 
     def ReqAndRespone(self, requestCode, bodyObject, path):
-        try:
 
-            client = tornado.httpclient.HTTPClient()
-            if not isinstance(bodyObject,dict):
-                requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject.__dict__).toJson()
-            else:
-                requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject).toJson()
+        client = tornado.httpclient.HTTPClient()
+        if not isinstance(bodyObject, dict):
+            requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject.__dict__).toJson()
+        else:
+            requestBody = JsonTemplate.newJsonRequest(requestCode, bodyObject).toJson()
 
-
-            host, port = self.getSlave()
-            url = "http://%s:%s%s" % (host, port, path)
-            http_request = tornado.httpclient.HTTPRequest(url=url, method='POST',
-                                                          use_gzip=False, connect_timeout=8000, request_timeout=8000,
-                                                          body=requestBody)
-            resp = client.fetch(http_request)
-            body =  json.loads(resp.body)
-            return body
-        except Exception as e:
-            log.error(e.message)
-            return JsonTemplate.newJsonErrorRes(-1, "请求异常")
-        pass
+        host, port = self.getSlave()
+        url = "http://%s:%s%s" % (host, port, path)
+        http_request = tornado.httpclient.HTTPRequest(url=url, method='POST',
+                                                      use_gzip=False, connect_timeout=8000, request_timeout=8000,
+                                                      body=requestBody)
+        resp = client.fetch(http_request)
+        body = json.loads(resp.body)
+        if (JsonTemplate.getRespCodeFromJson(body) != 0):
+            raise ZebraError(JsonTemplate.getRespCodeFromJson(body), JsonTemplate.getRespMsgFromJson(body))
+        return body
