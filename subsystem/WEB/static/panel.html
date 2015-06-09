@@ -95,10 +95,10 @@
             <img src="img/bike2.jpg" height="80" width="100">
         </div>
         <div>
-            <div class="clear"><span class="fl">车号：{{bike.bike_id}}</span><span class="fr">{{bike.price}} /分钟</span></div>
+            <div class="clear"><span class="fl">车号：{{bike.bid}}</span><span class="fr">0.8 /分钟</span></div>
             <div class="clear"><span class="fl addr"> {{bike.address}}</span><span class="fr">{{bike.distance * 1000|number : 0}} 米</span>
             </div>
-            <div class="clear"><span class="fl">剩余电量 {{bike.cur_power}}%</span><span class="fr">可续航里程: 12 公里</span>
+            <div class="clear"><span class="fl">剩余电量 {{bike.power}}%</span><span class="fr">可续航里程: 12 公里</span>
             </div>
             <div class="btn-area">
                 <input type="button" ng-click="openOrderModal(bike)" value="预订" id="order"/>

@@ -61,7 +61,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
             if (status == 0) {
                 $scope.nearCars = data.body
                 $scope.nearCars.forEach(function (bike) {
-                    geoService.getAddress(bike.longitude, bike.latitude, function (t, address) {
+                    geoService.getAddress(bike.lng, bike.lat, function (t, address) {
                         bike.address = address
                         console.log(address)
                         $scope.$digest()
@@ -79,7 +79,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
         })
     }
 
-    /* geoService.getGeo(function (status, lng, lat) {
+    geoService.getGeo(function (status, lng, lat) {
         if (status == 0) {
             $scope.lng = lng;
             $scope.lat = lat;
@@ -90,7 +90,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
 
         $scope.getNearBike()
 
-     });*/
+    });
 
 
 })

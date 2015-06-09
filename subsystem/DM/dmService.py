@@ -62,6 +62,32 @@ class DMService(ZebraServiceCli):
         '''
         ZebraServiceCli.__init__(self, name, zkAddrs)
 
+    def apiSearchBikeByDistance(self, resp):
+        '''
+            发送用户的LAT，LNG坐标和要取的附近的空闲车的距离
+            返回车辆信息{
+                包括：车辆的ID，车辆的距离，车辆电量,车辆的坐标
+            }
+        :param resp:
+        :return:
+        '''
+        # return RespNearBike(JsonTemplate.getRespBodyFromJson(resp))
+        return [{"bid": 123456, "distance": 0.5, "power": 50, "lng": 116.397428, "lat": 39.90923},
+                {"bid": 123457, "distance": 0.3, "power": 50, "lng": 116.397420, "lat": 39.90933},
+                {"bid": 123458, "distance": 0.2, "power": 50, "lng": 116.397421, "lat": 39.90913},
+                ]
+        pass
+
+    def apiGetBikeInfo(self, reqBikeInfo):
+        '''
+            伟入要查询的
+        :param param:
+        :return:
+        '''
+        return
+        pass
+
+
 if __name__ == '__main__':
     dm = DMService()
     time.sleep(1000)

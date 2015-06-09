@@ -57,12 +57,29 @@ class RespLogin(object):
 class ReqUser:
     def __init__(self, uid):
         self.uid = uid
-
     pass
 
     @staticmethod
     def createFromDict(dict):
         return ReqUser(dict["uid"])
+
+
+class ReqNearBike(object):
+    def __init__(self, lng, lat, distance):
+        self.lng = lng;
+        self.lat = lat;
+        self.distance = distance;
+
+    def createFromDict(dict):
+        return ReqNearBike(dict["lng"], dict["lat"], dict["distance"])
+
+
+class ReqBikeInfo(object):
+    def __init__(self, bid):
+        self.bid = bid;
+
+    def createFromDict(dict):
+        return ReqBikeInfo(dict["bid"])
 
 
 class Account(object):
@@ -91,6 +108,12 @@ class RespUserDetail:
 
 
 class UserFullInfo(object):
+    def __init__(self, dict):
+        self.__dict__.update(dict)
+    pass
+
+
+class RespNearBike(object):
     def __init__(self, dict):
         self.__dict__.update(dict)
 
