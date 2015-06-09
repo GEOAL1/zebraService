@@ -55,7 +55,7 @@ class AMService(ZebraServiceCli):
     REQ_WEB_PATH = "/service"  #请求的服务的相对地址
 
 
-    def __init__(self, zkAddrs="127.0.0.1:2181", name="DM"):
+    def __init__(self, zkAddrs="127.0.0.1:2181", name="AM"):
         '''
         :param zkAddrs:zk的地址，多个用，号隔开
         :param name: 服务的名称，要与服务器一致
@@ -72,6 +72,11 @@ class AMService(ZebraServiceCli):
         '''
         return int(time.time())
         pass
+#     待测试
+#         resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, ReqUser, self.REQ_WEB_PATH)
+#         return RespAccIdAlloc(JsonTemplate.getRespBodyFromJson(resp))
+#         pass
+        
 
     def apiGetAcctInfoByID(self, reqUser):
         '''
@@ -81,7 +86,10 @@ class AMService(ZebraServiceCli):
         '''
         return Account({"uid": reqUser.uid, "balance": 100, "point": 100})
         pass
-
+#     待测试
+#         resp = self.ReqAndRespone(CMD_AM_GETACCINFO_BYID, ReqUser, self.REQ_WEB_PATH)
+#         return RespAccDetail(JsonTemplate.getRespBodyFromJson(resp))
+#         pass
 
 if __name__ == '__main__':
     dm = AMService()
