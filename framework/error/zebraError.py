@@ -164,3 +164,12 @@ class InvaildReqCodeError(ZebraError):
         self.errMsg = "无效的请求类型"
         pass
 pass
+
+
+class AccountIsNotFoundedError(ZebraError):
+    def __init__(self):
+        self.errCode = -1015
+        self.errMsg = "没有找到该账户"
+        pass
+
+    pass
