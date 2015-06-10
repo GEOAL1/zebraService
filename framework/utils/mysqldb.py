@@ -13,5 +13,5 @@ class MysqlMananger:
         pass
 
     @staticmethod
-    def createMysqlDBInstance(dbname="zebra",host="127.0.0.1",username="root",password="123456"):
+    def createMysqlDBInstance(dbname="testam",host="10.111.32.95",username="root",password="root"):
         return torndb.Connection(host, dbname, username, password)

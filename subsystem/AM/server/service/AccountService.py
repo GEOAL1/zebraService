@@ -10,7 +10,7 @@ class AccountService(IService):
     def accIdAlloc(self):
         account = self.accountDao.add()
         #根据实际数据库字段来定
-        return RespAccIdAlloc(account["uid"])
+        return RespAccIdAlloc(account)
         pass
 
 
