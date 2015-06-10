@@ -70,12 +70,11 @@ class AMService(ZebraServiceCli):
             失败 RAISE 异常和信息
         :return:
         '''
-        return int(time.time())
-        pass
-#     待测试
-#         resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, ReqUser, self.REQ_WEB_PATH)
-#         return RespAccIdAlloc(JsonTemplate.getRespBodyFromJson(resp))
+#         return int(time.time())
 #         pass
+        resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, ReqUser, self.REQ_WEB_PATH)
+        return RespAccIdAlloc(JsonTemplate.getRespBodyFromJson(resp))
+        pass
         
 
     def apiGetAcctInfoByID(self, reqUser):
@@ -84,12 +83,11 @@ class AMService(ZebraServiceCli):
         :param reqUser:
         :return: Account
         '''
-        return Account({"uid": reqUser.uid, "balance": 100, "point": 100})
-        pass
-#     待测试
-#         resp = self.ReqAndRespone(CMD_AM_GETACCINFO_BYID, ReqUser, self.REQ_WEB_PATH)
-#         return RespAccDetail(JsonTemplate.getRespBodyFromJson(resp))
+#         return Account({"uid": reqUser.uid, "balance": 100, "point": 100})
 #         pass
+        resp = self.ReqAndRespone(CMD_AM_GETACCINFO_BYID, ReqUser, self.REQ_WEB_PATH)
+        return RespAccDetail(JsonTemplate.getRespBodyFromJson(resp))
+        pass
 
 if __name__ == '__main__':
     dm = AMService()
