@@ -171,5 +171,16 @@ class AccountIsNotFoundedError(ZebraError):
         self.errCode = -1015
         self.errMsg = "没有找到该账户"
         pass
-
     pass
+
+
+class UserIsDebtsError(ZebraError):
+    def __init__(self):
+        self.errCode = -1016
+        self.errMsg = "没钱了"
+
+
+class BikeNoServicableError(ZebraError):
+    def __init__(self):
+        self.errCode = -1017
+        self.errMsg = "车辆暂时不可提供服务"

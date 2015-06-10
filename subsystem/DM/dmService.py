@@ -88,6 +88,16 @@ class DMService(ZebraServiceCli):
                 "service_state": "1"}
         pass
 
+    def apiCheckBIkeIsServicable(self):
+        return True;
+        pass
+
+    def apiSetBikeToService(self, s):
+        pass
+
+    def apiSetBikeToIdle(self, s):
+        pass
+
 
 if __name__ == '__main__':
     dm = DMService()

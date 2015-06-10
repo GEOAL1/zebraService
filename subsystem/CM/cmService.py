@@ -62,6 +62,13 @@ class CMService(ZebraServiceCli):
         '''
         ZebraServiceCli.__init__(self, name, zkAddrs)
 
+    def apiStartCharging(self, s):
+        pass
+
+    def apiStopChargint(self, s):
+        pass
+
+
 if __name__ == '__main__':
     dm = CMService()
     time.sleep(1000)

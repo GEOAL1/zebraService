@@ -21,7 +21,7 @@ class RouterHandler(BaseHandler):
             url = "/static/login.html"
             user_id = self.session[SessionUserID]
             url = "/static/panel.html"
-        except Exception as e:
+            self.session[SessionUserID]
             pass
         finally:
             raise gen.Return(url)
