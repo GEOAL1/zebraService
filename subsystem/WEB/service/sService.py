@@ -2,7 +2,7 @@
 # coding: utf-8
 import logging
 from framework.error.zebraError import UserIsDebtsError, BikeNoServicableError
-from framework.model import ReqUser, ReqCreateService
+from framework.model import *
 from subsystem.AM.amService import AMService
 from subsystem.CM.cmService import CMService
 from subsystem.DM.dmService import DMService
@@ -13,12 +13,6 @@ log = logging.getLogger("sService")
 
 
 class SService(IWebService):
-    def __init__(self, sm=SMService(), cm=CMService(), am=AMService(), dm=DMService()):
-        self.sm = sm;
-        self.cm = cm;
-        self.am = am;
-        self.dm = dm;
-        pass
 
     def createService(self, uid, bid):
         # 查询该用户帐户是否可提供服务
@@ -26,17 +20,18 @@ class SService(IWebService):
             raise UserIsDebtsError()
 
         # 查询该车辆是否能提供服务
-        if self.dm.apiCheckBIkeIsServicable():
+        if self.dm.apiCheckBIkeIsServicable(ReqBikeInfo(bid)):
             raise BikeNoServicableError()
 
         # 创建服务ID
         s = self.sm.apiCreateService(ReqCreateService(uid, bid))
 
+        # 通知车管对应的车辆的服务编号及相关信息
+        self.dm.apiSetBikeToService(s)
+
         # 通知计费模块开始计费
         self.cm.apiStartCharging(s)
 
-        # 通知车管对应的车辆的服务编号及相关信息
-        self.dm.apiSetBikeToService(s)
         pass
 
     def finishService(self, uid, sid):
@@ -49,6 +44,8 @@ class SService(IWebService):
         self.dm.apiSetBikeToIdle(s)
         # 通过服务模块，结束本次服务
         self.sm.apiStopService(s)
+
+        return "完成本次服务成功，共花费100元"
 
         pass
 

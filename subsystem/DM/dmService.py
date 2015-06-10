@@ -88,7 +88,7 @@ class DMService(ZebraServiceCli):
                 "service_state": "1"}
         pass
 
-    def apiCheckBIkeIsServicable(self):
+    def apiCheckBIkeIsServicable(self, reqBikeInfo):
         return True;
         pass
 

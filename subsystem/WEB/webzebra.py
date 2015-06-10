@@ -13,10 +13,12 @@ from subsystem.WEB.handle.accountHandle import RechargeHandler
 from subsystem.WEB.handle.bikeHandle import BikeCtrlHandler, BikeInfoHandler, NearIdleBikeHandler
 
 from subsystem.WEB.handle.routerHandle import RouterHandler
+from subsystem.WEB.handle.serviceHandle import CreateServiceHandler, FinishServiceHandler
 from subsystem.WEB.handle.userHandler import UserInfoHandler, CheckPhoneHandle, RegHandler, LoginHandler, \
     SendPhoneCodeHandle
 from subsystem.WEB.handle.weixinServiceHandle import WeixinServiceHandle
 from subsystem.WEB.service.bikeService import BikeService
+from subsystem.WEB.service.sService import SService
 from subsystem.WEB.service.userService import  UserService
 define("port", default=8001, help="run on the given port", type=int)
 
@@ -78,6 +80,7 @@ class ZebraApplicatoin(tornado.web.Application):
 
         self.userService = UserService()
         self.bikeService = BikeService()
+        self.sService = SService()
 
         self.weixinManager = WeixinMananger()
 
