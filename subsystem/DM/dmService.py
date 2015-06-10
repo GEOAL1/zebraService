@@ -62,7 +62,7 @@ class DMService(ZebraServiceCli):
         '''
         ZebraServiceCli.__init__(self, name, zkAddrs)
 
-    def apiSearchBikeByDistance(self, resp):
+    def apiSearchIdleBikeByDistance(self, resp):
         '''
             发送用户的LAT，LNG坐标和要取的附近的空闲车的距离
             返回车辆信息{
@@ -80,11 +80,12 @@ class DMService(ZebraServiceCli):
 
     def apiGetBikeInfo(self, reqBikeInfo):
         '''
-            伟入要查询的
+            伟入要查询的ID,输出返回的车辆
         :param param:
-        :return:
+        :return: 各种动态信息及静态信息
         '''
-        return
+        return {"bid": 123458, "distance": 0.2, "power": 50, "lng": 116.397421, "lat": 39.90913, "lock_state": 1,
+                "service_state": "1"}
         pass
 
 

@@ -4,10 +4,19 @@ app.controller("panelController", function ($scope, userService, wxService, bike
         bike_id: ""
     }
 
-    $scope.searchBike = function () {
+    $scope.searchNearBike = function () {
         $scope.getNearBike()
         $('#search-menu').slideToggle()
     }
+
+    $scope.searchBikeByID = function () {
+        bikeService.getBikeInfo($scope.search.bike_id, function (state, data) {
+            $scope.nearCars = [data.body]
+        })
+        $('#search-menu').slideToggle()
+    }
+
+
     $scope.touchon = function () {
         $(document).on('touchmove', function (e) {
             e.preventDefault();
@@ -57,7 +66,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
         $scope.touchon()
         $scope.user_load_ok = false
 
-        bikeService.getNearBike($scope.lng, $scope.lat, $scope.search, function (status, data) {
+        bikeService.getNearBike($scope.lng, $scope.lat, $scope.search.distance, function (status, data) {
             if (status == 0) {
                 $scope.nearCars = data.body
                 $scope.nearCars.forEach(function (bike) {
@@ -74,7 +83,6 @@ app.controller("panelController", function ($scope, userService, wxService, bike
             }
             $scope.touchoff()
             $scope.user_load_ok = true
-
 
         })
     }

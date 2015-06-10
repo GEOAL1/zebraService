@@ -93,9 +93,8 @@ class SMService(ZebraServiceCli):
 
 if __name__ == '__main__':
     sm = SMService()
-    while True:
-        try:
-            sm.apiLogin(ReqLogin("15652750943", "27b5cb718d7c4685cf89e6227214402ec5bdbe26"))
-        except:
-            pass
+    try:
+        sm.apiLogin(ReqLogin("15652750943", "27b5cb718d7c4685cf89e6227214402ec5bdbe26"))
+    except:
+        pass
     time.sleep(1000)

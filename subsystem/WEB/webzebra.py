@@ -9,17 +9,15 @@ import tornado.options
 from tornado.options import define, options
 from framework.utils import session
 from framework.utils.WeixinUtils import WeixinMananger
-from subsystem.WEB.handle.bikeHandle import NearBikeHandler, BikeCtrlHandler, BikeInfoHandler
+from subsystem.WEB.handle.accountHandle import RechargeHandler
+from subsystem.WEB.handle.bikeHandle import BikeCtrlHandler, BikeInfoHandler, NearIdleBikeHandler
 
-from subsystem.WEB.handle.defaultHandle import DefaultHandler
-from subsystem.WEB.handle.loginHandle import LoginHandler
 from subsystem.WEB.handle.routerHandle import RouterHandler
-from subsystem.WEB.handle.userHandler import UserInfoHandler
+from subsystem.WEB.handle.userHandler import UserInfoHandler, CheckPhoneHandle, RegHandler, LoginHandler, \
+    SendPhoneCodeHandle
 from subsystem.WEB.handle.weixinServiceHandle import WeixinServiceHandle
 from subsystem.WEB.service.bikeService import BikeService
 from subsystem.WEB.service.userService import  UserService
-from subsystem.WEB.handle.regHandle import *
-
 define("port", default=8001, help="run on the given port", type=int)
 
 
@@ -54,10 +52,17 @@ class ZebraApplicatoin(tornado.web.Application):
             (r"/wx/u/login", LoginHandler),
 
             # 车管
-            (r"/wx/b/list", DefaultHandler),
             (r"/wx/b/info", BikeInfoHandler),
             (r"/wx/b/ctrl/(\w*)", BikeCtrlHandler),
-            (r"/wx/b/search", NearBikeHandler),
+            (r"/wx/b/search", NearIdleBikeHandler),
+
+            # 服务
+            (r"/wx/s/create", CreateServiceHandler),
+            (r"/wx/s/finish", FinishServiceHandler),
+
+            # 帐户管理
+            (r"/wx/a/recharge", RechargeHandler),
+
 
             # 第三方服务
             (r"/wx/send/phoneCode", SendPhoneCodeHandle),

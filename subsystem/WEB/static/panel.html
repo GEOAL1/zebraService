@@ -42,13 +42,14 @@
     <ul class="nav navbar-nav" style="display:none;" id="search-menu">
 
         <div class="form-group input-group-sm" style="margin: 0 30px">
-            <form id="signup_form" class="form-signin" name="signup_form" ng-submit="searchBike()">
+            <form id="signup_form" class="form-signin" name="signup_form">
 
                 <div class="form-group input-group-md">
 
                     <label for="bike_id" class="sr-only">车号</label>
                     <input type="text" id="bike_id" name="bike_id" ng-model="search.bike_id" class="form-control"
                            placeholder="请输入车号"/>
+
                 </div>
                 <div class="form-group input-group-md">
 
@@ -56,7 +57,9 @@
                     <input type="text" id="balance" name="balance" ng-model="search.distance" class="form-control"
                            placeholder="距离"/>
                 </div>
-                <button type="submit" class="btn btn-success fr">搜索</button>
+                <button ng-click="searchNearBike()" class="btn btn-success fr">搜距离</button>
+                <button ng-click="searchBikeByID()" class="btn btn-success fr">搜ID</button>
+
             </form>
         </div>
 
@@ -80,7 +83,7 @@
             </div>
             <div class="detail-info">
                 <div><span>积分</span><span>{{user.point}}</span></div>
-                <div><span>积累里程： {{user.mileage}} 公里</span><span>积累时间：{{user.costTime}} 分钟</span></div>
+                <div><span>积累里程： {{user.total_mileage}} 公里</span><span>积累时间：{{user.total_time}} 分钟</span></div>
             </div>
             <div class="detail-info">
                 <div><span>余额</span><span>{{user.balance}}</span></div>
@@ -135,7 +138,7 @@
                 </h4>
             </div>
             <div class="modal-body">
-                您要预定的车辆 编号 : {{selectBike.bike_id}}
+                您要预定的车辆 编号 : {{selectBike.bid}}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
