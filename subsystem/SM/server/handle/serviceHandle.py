@@ -15,9 +15,9 @@ from framework.model import *
 log = logging.getLogger("serviceHandler")
 
 
-class ServiceHandler(tornado.web.RequestHandler):
+class SmServiceHandler(tornado.web.RequestHandler):
     def __init__(self, application, request, **kwargs):
-        super(ServiceHandler, self).__init__(application, request, **kwargs)
+        super(SmServiceHandler, self).__init__(application, request, **kwargs)
         '''
             请求的映射表
         '''

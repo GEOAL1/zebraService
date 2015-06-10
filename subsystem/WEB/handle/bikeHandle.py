@@ -43,7 +43,7 @@ class BikeCtrlHandler(BaseHandler):
         pass
 
 
-class NearBikeHandler(BaseHandler):
+class NearIdleBikeHandler(BaseHandler):
     @authenticated
     @tornado.web.asynchronous
     @tornado.gen.coroutine

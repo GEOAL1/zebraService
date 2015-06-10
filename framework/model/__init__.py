@@ -82,6 +82,15 @@ class ReqBikeInfo(object):
         return ReqBikeInfo(dict["bid"])
 
 
+class ReqCreateService(object):
+    def __init__(self, uid, bid):
+        self.uid = uid
+        self.bid = bid
+
+    def createFromDict(dict):
+        return ReqCreateService(dict["uid"], dict["bid"])
+
+
 class Account(object):
     def __init__(self, dict):
         self.__dict__ = dict

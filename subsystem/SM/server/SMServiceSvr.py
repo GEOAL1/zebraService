@@ -8,10 +8,10 @@ from tornado import httpserver
 from tornado.options import define, options
 from framework.serviceFm import ZebraServiceSvr
 
-from subsystem.SM.server.handle.serviceHandle import ServiceHandler
+from subsystem.SM.server.handle.serviceHandle import SmServiceHandler
 from subsystem.SM.server.service.userService import UserService
 
-define('debug', default=False, help='enable debug mode')
+define('debug', default=True, help='enable debug mode')
 define('port', default=8020, help='run on this port', type=int)
 define('address', default="127.0.0.1", help='run on this address', type=str) #记得写外网IP，要不客户端连接不上
 define('zookeepers', default="127.0.0.1:2181", help='run on this zookeeper cloudy', type=str) #
@@ -32,7 +32,7 @@ class SMServer(ZebraServiceSvr):
 
         # 注册句柄
         handlers = [
-            (r"/service", ServiceHandler),  #服务句柄
+            (r"/service", SmServiceHandler),  # 服务句柄
         ]
 
         # 注入服务

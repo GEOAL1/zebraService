@@ -33,11 +33,11 @@ class RedisCache(object):
         self._connection = redis.Redis(connection_pool=RedisCache.pool)
 
     @staticmethod
-    def create_pool():
+    def create_pool(host=RedisDBConfig.HOST,port = RedisDBConfig.PORT,db=RedisDBConfig.DBID):
         RedisCache.pool = redis.ConnectionPool(
-            host=RedisDBConfig.HOST,
-            port=RedisDBConfig.PORT,
-            db=RedisDBConfig.DBID)
+            host=host,
+            port=port,
+            db=db)
 
     @operator_status
     def set_data(self, key, value):

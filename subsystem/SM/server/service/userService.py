@@ -3,9 +3,12 @@
 from framework.error.zebraError import *
 from framework.model import *
 from framework.service.IService import IService
+from subsystem.SM.server.dao.userDao import UserDao
 
 
-class UserService(IService):
+class UserService():
+    def __init__(self):
+        self.userDao = UserDao()
 
     def register(self, registerForm):
         self.userDao.add(registerForm.userID,registerForm.phone,registerForm.password)

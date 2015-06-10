@@ -37,7 +37,7 @@ app.service('bikeService', function ($rootScope, $http) {
 
     var service = {
         bikeVoice: function (bike, cb) {
-            sendCmd('/wx/b/ctrl/voice', "GET", {bikeID: bike.bike_id}, function (state, data) {
+            sendCmd('/wx/b/ctrl/voice', "GET", {bikeID: bike.bid}, function (state, data) {
                 if(state == 0) {
                     alert("响铃发送成功")
                 }else{
@@ -51,7 +51,7 @@ app.service('bikeService', function ($rootScope, $http) {
         },
 
         bikeLight: function (bike, cb) {
-            sendCmd('/wx/b/ctrl/light', "GET", {bikeID: bike.bike_id}, function (state, data) {
+            sendCmd('/wx/b/ctrl/light', "GET", {bikeID: bike.bid}, function (state, data) {
                 if(state == 0) {
                     alert("灯光发送成功")
                 }else{
@@ -72,7 +72,7 @@ app.service('bikeService', function ($rootScope, $http) {
                 cmd = "unlock"
             }
 
-            sendCmd('/wx/b/ctrl/' + cmd, "GET", {bikeID: bike.bike_id}, function (state, data) {
+            sendCmd('/wx/b/ctrl/' + cmd, "GET", {bikeID: bike.bid}, function (state, data) {
                 if(state == 0) {
                     alert("命令发送成功")
                 }
@@ -120,7 +120,7 @@ app.service('bikeService', function ($rootScope, $http) {
 
 
         bikeNavigate: function (bike) {
-            qq.maps.convertor.translate(new qq.maps.LatLng(bike.latitude, bike.longitude), 1, function (res) {
+            qq.maps.convertor.translate(new qq.maps.LatLng(bike.lat, bike.lng), 1, function (res) {
                         wx.openLocation({
                             latitude: res[0].lat,
                             longitude: res[0].lng,
@@ -132,16 +132,16 @@ app.service('bikeService', function ($rootScope, $http) {
                 })
         },
 
-        getNearBike: function (lng, lat, search, callback) {
+        getNearBike: function (lng, lat, distance, callback) {
             sendCmd('/wx/b/search', "GET", {
                 "lng": lng,
                 "lat": lat,
-                "distance": search.distance,
-                "bike_id": search.bike_id
+                "distance": distance,
             }, function (state, data) {
                 callback(state, data)
             })
         },
+
 
         getBikeInfo: function (bikeId, callback) {
             sendCmd('/wx/b/info', "GET", {bikeID: bikeId}, function (state, data) {

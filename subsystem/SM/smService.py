@@ -85,17 +85,31 @@ class SMService(ZebraServiceCli):
 
     pass
 
-    def apiGetUserDetailInfoByID(self, ReqUser):
-        resp = self.ReqAndRespone(CMD_SM_GETUSERDETAILINFO, ReqUser, self.REQ_WEB_PATH)
+    def apiGetUserDetailInfoByID(self, reqUser):
+        resp = self.ReqAndRespone(CMD_SM_GETUSERDETAILINFO, reqUser, self.REQ_WEB_PATH)
         return RespUserDetail(JsonTemplate.getRespBodyFromJson(resp))
+        pass
+
+    def apiCheckIsDebts(self, reqUser):
+        userDetail = self.apiGetUserDetailInfoByID(reqUser)
+        return userDetail.__dict__["is_debts"]
+        pass
+
+    def apiCreateService(self, uid, bid):
+        return {"sid": 123456, "uid": uid, "bid": bid}
+        pass
+
+    def apiGetServiceByUidAndSID(self, uid, sid):
+        pass
+
+    def apiStopService(self, s):
         pass
 
 
 if __name__ == '__main__':
     sm = SMService()
-    while True:
-        try:
-            sm.apiLogin(ReqLogin("15652750943", "27b5cb718d7c4685cf89e6227214402ec5bdbe26"))
-        except:
-            pass
+    try:
+        sm.apiLogin(ReqLogin("15652750943", "27b5cb718d7c4685cf89e6227214402ec5bdbe26"))
+    except:
+        pass
     time.sleep(1000)
