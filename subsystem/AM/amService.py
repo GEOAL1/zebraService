@@ -72,7 +72,7 @@ class AMService(ZebraServiceCli):
         '''
 #         return int(time.time())
 #         pass
-        resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, {}, self.REQ_WEB_PATH)
+        resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, ReqUser(11), self.REQ_WEB_PATH)
         return RespAccIdAlloc(JsonTemplate.getRespBodyFromJson(resp))
         pass
         
@@ -85,12 +85,14 @@ class AMService(ZebraServiceCli):
         '''
 #         return Account({"uid": reqUser.uid, "balance": 100, "point": 100})
 #         pass
-        resp = self.ReqAndRespone(CMD_AM_GETACCINFO_BYID, ReqUser, self.REQ_WEB_PATH)
+        resp = self.ReqAndRespone(CMD_AM_GETACCINFO_BYID, reqUser, self.REQ_WEB_PATH)
         return RespAccDetail(JsonTemplate.getRespBodyFromJson(resp))
         pass
 
 if __name__ == '__main__':
     dm = AMService()
+    print(dm.apiGetAcctInfoByID(ReqUser(100000007)))
+    print(dm.apiAccIDAlloc().__dict__)
     time.sleep(1000)
 
 
