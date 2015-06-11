@@ -80,7 +80,7 @@ app.service('bikeService', function ($rootScope, $http) {
         },
 
         bikeOrder: function (bike_id, callback) {
-            sendCmd('/wx/o/order', "GET", {bikeID: bike_id}, function (state, data) {
+            sendCmd('/wx/s/create', "GET", {bid: bike_id}, function (state, data) {
                 if (state == 0) {
                     alert("订购车成功")
                     location.href = "/"

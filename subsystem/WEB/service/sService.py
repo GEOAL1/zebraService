@@ -21,26 +21,26 @@ class SService(IWebService):
 
     def createService(self, uid, bid):
         # 查询该用户帐户是否可提供服务
-        if self.sm.apiCheckIsDebts(ReqUser):
-            raise UserIsDebtsError()
+        self.sm.apiCheckIsDebts(ReqUser(uid))
 
         # 查询该车辆是否能提供服务
-        if self.dm.apiCheckBIkeIsServicable(ReqBikeInfo(bid)):
-            raise BikeNoServicableError()
+        self.dm.apiCheckBIkeIsServicable(ReqBikeInfo(bid))
 
         # 创建服务ID
-        s = self.sm.apiCreateService(ReqCreateService(uid, bid))
+        serverInfo = self.sm.apiCreateService(ReqCreateService(uid, bid))
+        # serverInfo = {"sid": 123456, "uid": ReqCreateService.uid, "bid": ReqCreateService.bid}
 
         # 通知车管对应的车辆的服务编号及相关信息
-        self.dm.apiSetBikeToService(s)
+        self.dm.apiSetBikeToService(serverInfo)
 
         # 通知计费模块开始计费
-        self.cm.apiStartCharging(s)
+        self.cm.apiStartCharging(serverInfo)
 
+        return serverInfo.sid
         pass
 
     def finishService(self, uid, sid):
-        # 查询服务信息，可该用户对此服务的有效性
+        # 查询服务信息，栓查该用户对此服务的有效性
         s = self.sm.apiGetServiceByUidAndSID(uid, sid)
 
         # 通知计费模块停止计费，返回本次消费金额信息

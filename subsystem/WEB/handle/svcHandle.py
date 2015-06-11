@@ -15,7 +15,7 @@ from subsystem.WEB.handle.baseHandle import BaseHandler
 from subsystem.WEB.utiles.restTemplate import RestTemplate
 
 
-class CreateServiceHandler(BaseHandler):
+class CreateSvcHandler(BaseHandler):
     @authenticated
     @tornado.web.asynchronous
     @tornado.gen.coroutine
@@ -33,9 +33,9 @@ class CreateServiceHandler(BaseHandler):
             except Exception as e:
                 raise InputArgsError()
 
-            self.application.sService.createService(uid, bid)
+            sid = self.application.sService.createService(uid, bid)
 
-            ret = RestTemplate.newJsonRes().setErrMsg("服务建立成功")
+            ret = RestTemplate.newJsonRes().setErrMsg("服务建立成功 服务编号[%d]" % (sid))
         except ZebraError as e:
             ret = RestTemplate.newZebraErrorRes(e)
         except Exception as e:
@@ -44,7 +44,7 @@ class CreateServiceHandler(BaseHandler):
         raise gen.Return(ret.toJson())
 
 
-class FinishServiceHandler(BaseHandler):
+class FinishSvcHandler(BaseHandler):
     @authenticated
     @tornado.web.asynchronous
     @tornado.gen.coroutine

@@ -9,6 +9,7 @@ from tornado.options import define, options
 from framework.serviceFm import ZebraServiceSvr
 
 from subsystem.SM.server.handle.serviceHandle import SmServiceHandler
+from subsystem.SM.server.service.svcService import SvcService
 from subsystem.SM.server.service.userService import UserService
 
 define('debug', default=True, help='enable debug mode')
@@ -37,6 +38,7 @@ class SMServer(ZebraServiceSvr):
 
         # 注入服务
         self.userService = UserService()
+        self.svcService = SvcService()
 
         # 初始化WEB
         tornado.web.Application.__init__(self, handlers, **settings)

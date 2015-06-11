@@ -91,12 +91,18 @@ class SMService(ZebraServiceCli):
         pass
 
     def apiCheckIsDebts(self, reqUser):
-        userDetail = self.apiGetUserDetailInfoByID(reqUser)
-        return userDetail.__dict__["is_debts"]
-        pass
+        '''
 
-    def apiCreateService(self, uid, bid):
-        return {"sid": 123456, "uid": uid, "bid": bid}
+        :param reqUser:请求的用户信息包含ID
+        :return: 是否欠费,欠费抛出异常
+        '''
+        userDetail = self.apiGetUserDetailInfoByID(reqUser)
+        if userDetail.__dict__["is_debts"] != 0:
+            raise UserIsDebtsError()
+
+    def apiCreateService(self, ReqCreateService):
+        resp = self.ReqAndRespone(CMD_SM_CREATE_SERVICE, ReqCreateService, self.REQ_WEB_PATH)
+        return Svc.createFromDict(JsonTemplate.getRespBodyFromJson(resp))
         pass
 
     def apiGetServiceByUidAndSID(self, uid, sid):

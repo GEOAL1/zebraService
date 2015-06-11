@@ -63,6 +63,7 @@ class CMService(ZebraServiceCli):
         ZebraServiceCli.__init__(self, name, zkAddrs)
 
     def apiStartCharging(self, s):
+        return True
         pass
 
     def apiStopCharging(self, s):

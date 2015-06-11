@@ -13,7 +13,7 @@ from subsystem.WEB.handle.accountHandle import RechargeHandler
 from subsystem.WEB.handle.bikeHandle import BikeCtrlHandler, BikeInfoHandler, NearIdleBikeHandler
 
 from subsystem.WEB.handle.routerHandle import RouterHandler
-from subsystem.WEB.handle.serviceHandle import CreateServiceHandler, FinishServiceHandler
+from subsystem.WEB.handle.svcHandle import *
 from subsystem.WEB.handle.userHandler import UserInfoHandler, CheckPhoneHandle, RegHandler, LoginHandler, \
     SendPhoneCodeHandle
 from subsystem.WEB.handle.weixinServiceHandle import WeixinServiceHandle
@@ -59,8 +59,8 @@ class ZebraApplicatoin(tornado.web.Application):
             (r"/wx/b/search", NearIdleBikeHandler),
 
             # 服务
-            (r"/wx/s/create", CreateServiceHandler),
-            (r"/wx/s/finish", FinishServiceHandler),
+            (r"/wx/s/create", CreateSvcHandler),
+            (r"/wx/s/finish", FinishSvcHandler),
 
             # 帐户管理
             (r"/wx/a/recharge", RechargeHandler),

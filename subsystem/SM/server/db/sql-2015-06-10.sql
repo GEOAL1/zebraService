@@ -25,7 +25,8 @@ DROP TABLE IF EXISTS `t_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `t_service` (
-  `sid` int(11) NOT NULL COMMENT '服务ID\n',
+  `sid` INT(11) NOT NULL AUTO_INCREMENT
+  COMMENT '服务ID\n',
   `s_state` int(11) NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL,
   `did` int(11) NOT NULL,
@@ -33,7 +34,11 @@ CREATE TABLE `t_service` (
   `start_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `end_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='记录一次服务记录\n';
+)
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 10000000
+  DEFAULT CHARSET = utf8
+  COMMENT = '记录一次服务记录\n';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

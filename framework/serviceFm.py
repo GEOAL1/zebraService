@@ -12,6 +12,7 @@ from tornado.httpclient import HTTPResponse
 from zkclient import ZkClient, NodeChildrenListener
 from tornado import httpclient
 from framework.error.zebraError import ZebraError
+from tornado import gen
 
 from framework.protocol.jsonTemplate import JsonTemplate
 
@@ -217,6 +218,7 @@ class ZebraServiceCli():
         index = self.seed % len(self.workerAddrs)
         return self.workerAddrs[index].split(":")
 
+
     def ReqAndRespone(self, requestCode, bodyObject, path):
 
         client = tornado.httpclient.HTTPClient()
@@ -231,6 +233,7 @@ class ZebraServiceCli():
         http_request = tornado.httpclient.HTTPRequest(url=url, method='POST',
                                                       use_gzip=False, connect_timeout=8000, request_timeout=8000,
                                                       body=requestBody)
+        # resp = client.fetch(http_request)
         resp = client.fetch(http_request)
         body = json.loads(resp.body)
         if (JsonTemplate.getRespCodeFromJson(body) != 0):

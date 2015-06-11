@@ -89,7 +89,12 @@ class DMService(ZebraServiceCli):
         pass
 
     def apiCheckBIkeIsServicable(self, reqBikeInfo):
-        return True;
+        '''
+            返回请求的车辆当前是否可以提提供服务
+            请求的对象里包售bid
+        :param reqBikeInfo:
+        :return: 返回是否能提供服务，正常结束,不能则抛出异常，并给出原因
+        '''
         pass
 
     def apiSetBikeToService(self, s):

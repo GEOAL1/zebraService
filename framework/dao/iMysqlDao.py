@@ -8,7 +8,6 @@ class IMysqlDao():
     def __init__(self):
         pass
 
-
     @abstractmethod
     def add(self, object):
         pass

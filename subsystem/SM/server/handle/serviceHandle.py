@@ -26,6 +26,7 @@ class SmServiceHandler(tornado.web.RequestHandler):
             CMD_SM_CHECK_ISEXISTED_PHONE: self.isExistedPhone,
             CMD_SM_LOGIN: self.login,
             CMD_SM_GETUSERDETAILINFO: self.getUserDetailInfo,
+            CMD_SM_CREATE_SERVICE: self.createService,
         }
 
     def get(self):
@@ -70,3 +71,7 @@ class SmServiceHandler(tornado.web.RequestHandler):
     def getUserDetailInfo(self, req):
         userDetail = self.application.userService.getUserDetailInfo(ReqUser.createFromDict(req["body"]))
         return JsonTemplate.newJsonSuccessRes().setBody(userDetail.__dict__)
+
+    def createService(self, req):
+        svc = self.application.svcService.createSvc(ReqCreateService.createFromDict(req["body"]))
+        return JsonTemplate.newJsonSuccessRes().setBody(svc.__dict__)
