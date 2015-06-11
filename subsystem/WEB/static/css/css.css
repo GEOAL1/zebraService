@@ -1,0 +1,536 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body, html {
+    margin: 0px;
+    font-family: 微软雅黑;
+    padding: 0px;
+    font-size: 12px;
+    max-width: 1024px;
+    margin: 0 auto
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #fff;
+}
+
+a.link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.top {
+    width: 100%;
+    height: 120px;
+    background: #1acbbb;
+    font-size: 45px;
+    text-align: center;
+    color: #fff;
+    line-height: 120px;
+}
+
+.box {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -o-box;
+    width: 100%;
+    height: 100%;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -o-box-orient: vertical;
+    box-orient: vertical;
+}
+
+.top_info {
+    width: 100%;
+    height: 320px;
+    background: url(../img/top_bg.jpg) no-repeat center;
+    background-size: 100%;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.head_img {
+    width: 100%;
+    height: 182px;
+    text-align: center;
+}
+
+.head_phone {
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+    padding-top: 20px;
+}
+
+.list_div {
+    width: 100%;
+    height: auto;
+    padding-top: 40px;
+}
+
+.list_div div {
+    float: left;
+}
+
+.list_div01 {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.list_lr {
+    width: 2%;
+    height: 200px;
+}
+
+.list01 {
+    width: 96%;
+    height: 200px;
+}
+
+.list01_left {
+    width: 2%;
+    height: 200px;
+    background: url(../img/list_left.jpg) no-repeat;
+}
+
+.list01_right {
+    width: 2%;
+    height: 200px;
+    background: url(../img/list_right.jpg) no-repeat;
+}
+
+.list01_mid {
+    width: 96%;
+    height: 200px;
+    background: #ff7c8a;
+}
+
+.mid_title {
+    width: 20%;
+    height: 200px;
+    border-right: 2px #fff solid;
+    text-align: center;
+    line-height: 200px;
+    font-size: 60px;
+    color: #fff;
+    padding-right: 2%;
+}
+
+.mid_cent {
+    width: 51%;
+    height: 200px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.mid_cent_up {
+    width: 100%;
+    height: 99px;
+    border-bottom: 1px #fff solid;
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    line-height: 99px;
+}
+
+.mid_cent_down {
+    width: 100%;
+    height: 99px;
+    border-top: 1px #fff solid;
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    line-height: 99px;
+}
+
+.mid_nub {
+    width: 20%;
+    height: 200px;
+    border-left: 2px #fff solid;
+    text-align: center;
+    line-height: 200px;
+    font-size: 60px;
+    color: #fff;
+    padding-left: 2%;
+}
+
+.list_div02 {
+    width: 100%;
+    height: 40px;
+    border-top: 2px #b1b8c8 dashed;
+}
+
+.list02_left {
+    width: 17%;
+    height: 200px;
+}
+
+.list02_left_top {
+    background: url(../img/left_topimg.png);
+    position: relative;
+}
+
+.list02_right {
+    width: 17%;
+    height: 200px;
+    background: url(../img/right_button.jpg) no-repeat;
+    text-align: center;
+    line-height: 200px;
+    font-size: 50px;
+    color: #fff;
+}
+
+.list02_cent {
+    width: 66%;
+    height: 200px;
+    background: #efefef;
+    color: #7f8dac;
+    font-size: 30px;
+}
+
+.list02_down {
+    width: 100%;
+    height: 66px;
+    line-height: 66px;
+}
+
+.list02_up {
+    width: 100%;
+    height: 66px;
+    line-height: 66px;
+    border-bottom: 2px #fff solid;
+}
+
+.list02_up a:visited {
+    color: #7f8dac;
+}
+
+.list02_up a:link {
+    color: #7f8dac;
+    text-decoration: none;
+}
+
+.list02_title {
+    width: 55%;
+    margin-left: 2%;
+}
+
+.list02_meter {
+    width: 41%;
+    margin-right: 2%;
+    text-align: right;
+}
+
+.list02_icon {
+    width: 5%;
+    height: 33px;
+    margin-top: 0px;
+    margin-left: 2%;
+}
+
+.list02_add {
+    width: 90%;
+    margin-left: 2%;
+    line-height: 66px;
+}
+
+.list02_word {
+    width: 45%;
+    height: 66px;
+    line-height: 66px;
+    margin-left: 2%;
+}
+
+.list02_word02 {
+    width: 51%;
+    height: 66px;
+    line-height: 66px;
+    margin-right: 2%;
+    text-align: right;
+}
+
+.list03_left {
+    width: 2%;
+    height: 200px;
+    background: url(../img/list_left02.jpg) no-repeat;
+}
+
+.list03_right {
+    width: 2%;
+    height: 200px;
+    background: url(../img/list_right02.jpg) no-repeat;
+}
+
+.list03_mid {
+    width: 96%;
+    height: 200px;
+    background: #efefef;
+}
+
+.list03_up {
+    width: 100%;
+    height: 99px;
+    border-bottom: 1px #fff solid;
+}
+
+.list03_down {
+    width: 100%;
+    height: 99px;
+    border-top: 1px #fff solid;
+}
+
+.list03_div {
+    width: 24.8%;
+    border-right: 2px #fff solid;
+    height: 89px;
+    line-height: 89px;
+    color: #7f8dac;
+    font-size: 40px;
+    text-align: center;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.boder_right {
+    border-right: none;
+}
+
+.list_div04 {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.list_lr04 {
+    width: 2%;
+    height: 600px;
+}
+
+.list04 {
+    width: 96%;
+    height: auto;
+}
+
+.list04_button {
+    width: 48%;
+    height: 150px;
+}
+
+.mr6 {
+    margin-right: 4%;
+}
+
+.list04_but_lf {
+    width: 5%;
+    height: 150px;
+    background: url(../img/button02.png) no-repeat;
+}
+
+.list04_but_rt {
+    width: 5%;
+    height: 150px;
+    background: url(../img/button02.png) no-repeat -20px 0px;
+}
+
+.list04_but_mid {
+    width: 90%;
+    height: 150px;
+    background: #1acbbb;
+}
+
+.list04_but_icon {
+    width: 20%;
+    height: 80px;
+    margin-top: 35px;
+    margin-left: 15%;
+}
+
+.list04_but_title {
+    width: 50%;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    color: #fff;
+    font-size: 60px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.list05_button {
+    width: 100%;
+    height: 150px;
+}
+
+.list05_but_lf {
+    width: 2%;
+    height: 150px;
+    background: url(../img/button03.png) no-repeat;
+}
+
+.list05_but_rt {
+    width: 2%;
+    height: 150px;
+    background: url(../img/button03.png) no-repeat -20px 0px;
+}
+
+.list05_but_mid {
+    width: 96%;
+    height: 150px;
+    background: #ff7c8a;
+    line-height: 150px;
+    font-size: 60px;
+    text-align: center;
+    color: #fff;
+}
+
+.loading {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+.loading img {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    background: transparent;
+    animation: myfirst 1.5s infinite;
+    -moz-animation: myfirst 1.5s linear infinite; /* Firefox */
+    -webkit-animation: myfirst 1.5s infinite; /* Safari 和 Chrome */
+}
+
+#bottom-nav {
+    min-height: 70px;
+    height: 130px;
+    background-color: #FFF;
+    border-top: 1px;
+    border-top-style: solid;
+    border-top-color: #CCC;
+    max-width: 1024px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1030;
+    margin: 0 auto;
+    border-width: 1px 0 0;
+
+}
+
+#bottom-nav > .row {
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+#bottom-nav > .row > div {
+    /* border-left:1px;
+     border-left-style:solid;*/
+    text-align: center;
+    border-color: #CCC;
+    background-color: #FFF;
+    color: #999999;
+}
+
+#bottom-nav a {
+    color: #999999;
+
+}
+
+.bottom-nav-title {
+    display: block;
+    font-size: 30px;
+}
+
+.bottom-nav-img {
+    display: block;
+    font-size: 60px
+}
+
+.shadow {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 99998;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.shadow .shadow-cont {
+    position: fixed;
+    z-index: 99999;
+    background: #fff;
+    width: 80%;
+    top: 40%;
+    left: 50%;
+    margin-left: -40%;
+}
+
+.shadow .shadow-cont h1 {
+    font-size: 3.5em;
+    color: #333;
+    padding: 10px 10px 15px;
+}
+
+.shadow .shadow-info {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+.shadow .shadow-cont p {
+    margin: 5px 0;
+}
+
+.shadow .shadow-cont .shadow-btn {
+    position: relative;
+    padding: 15px 10px;
+    height: 90px;
+}
+
+.shadow .shadow-cont .shadow-btn a {
+    position: absolute;
+    /* width:200px;
+     height:60px;*/
+    line-height: 50px;
+    /*
+    color:#fff;
+    */
+    font-size: 2.8em;
+    text-align: center;
+    right: 10px;
+    top: 10px;
+    /*
+    background:#1acbbb;
+    */
+
+}
+
+.shadow .shadow-cont .shadow-btn a:first-child {
+    right: 230px;
+    width: 150px;
+    top: 10px;
+}

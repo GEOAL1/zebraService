@@ -65,7 +65,7 @@ class CMService(ZebraServiceCli):
     def apiStartCharging(self, s):
         pass
 
-    def apiStopChargint(self, s):
+    def apiStopCharging(self, s):
         pass
 
 

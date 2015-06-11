@@ -9,7 +9,8 @@ app.service('geoService', function ($rootScope, $http) {
                 var geocoder = new soso.maps.Geocoder();
 
                 geocoder.setComplete(function (e) {
-                    callback(0, e.detail.address)
+                    callback(0, e.detail.addressComponents.district +
+                        e.detail.addressComponents.streetNumber)
                 })
 
                 geocoder.setError(function () {

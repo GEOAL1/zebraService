@@ -72,7 +72,7 @@ class AMService(ZebraServiceCli):
         '''
 #         return int(time.time())
 #         pass
-        resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, ReqUser, self.REQ_WEB_PATH)
+        resp = self.ReqAndRespone(CMD_AM_ACCID_ALLOC, {}, self.REQ_WEB_PATH)
         return RespAccIdAlloc(JsonTemplate.getRespBodyFromJson(resp))
         pass
         

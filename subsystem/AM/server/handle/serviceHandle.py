@@ -52,7 +52,7 @@ class ServiceHandler(tornado.web.RequestHandler):
         raise gen.Return(ret.toJson())
         pass
     
-    def accIdAlloc(self):
+    def accIdAlloc(self,req):
         accID = self.application.accountService.accIdAlloc() 
         return JsonTemplate.newJsonSuccessRes().setBody(accID.__dict__)
         

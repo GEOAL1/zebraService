@@ -6,7 +6,7 @@ from framework.utils.mysqldb import MysqlMananger
 
 class UserDao(IMysqlDao):
     def __init__(self):
-        self.db = MysqlMananger.createMysqlDBInstance("db_zebra_sm")
+        self.db = MysqlMananger.createMysqlDBInstance("db_zebra_sm","127.0.0.1","root","123456")
     pass
 
     def getUserByPhone(self,phone):

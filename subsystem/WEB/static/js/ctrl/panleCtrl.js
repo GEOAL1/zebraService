@@ -4,10 +4,11 @@ app.controller("panelController", function ($scope, userService, wxService, bike
         bike_id: ""
     }
 
-    $scope.searchNearBike = function () {
+    $scope.searchBike = function () {
         $scope.getNearBike()
-        $('#search-menu').slideToggle()
+        $('.searchModal').fadeOut('fast')
     }
+
 
     $scope.searchBikeByID = function () {
         bikeService.getBikeInfo($scope.search.bike_id, function (state, data) {
@@ -47,7 +48,7 @@ app.controller("panelController", function ($scope, userService, wxService, bike
     $scope.bikeOrder = bikeService.bikeOrder
 
     $scope.openOrderModal = function (bike) {
-        $('#myModal').modal('show')
+        $('.orderModal').fadeIn("fast")
         $scope.selectBike = bike;
         $event.preventDefault()
     }
